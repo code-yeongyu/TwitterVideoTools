@@ -40,6 +40,9 @@ init_forbid_extra = true
 init_typed = true
 warn_required_dynamic_aliases = true
 warn_untyped_fields = true
+disable_error_code = [
+    "no-untyped-call",
+] # not all python modules are typed correctly
 
 [tool.pylint.MASTER]
 load-plugins = 'pylint_quotes'
