@@ -1,0 +1,65 @@
+[tool.poetry]
+name = "python project template for 3.9"
+version = "0.1.0"
+description = "A required packages pre-installed pyproject"
+authors = []
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pydantic = "^1.10.2"
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.982"
+yapf = "^0.32.0"
+pylint = "^2.15.5"
+isort = "^5.10.1"
+pytest = "^7.2.0"
+pytest-cov = "^4.0.0"
+pylint-quotes = "^0.2.3"
+unify = "^0.5"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]
+disallow_untyped_defs = true
+disallow_any_unimported = true
+no_implicit_optional = true
+check_untyped_defs = true
+warn_return_any = true
+show_error_codes = true
+warn_unused_ignores = true
+python_version = 3.9
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
+
+[tool.pylint.MASTER]
+load-plugins = 'pylint_quotes'
+persistent = 'yes'
+suggestion-mode = 'yes'
+unsafe-load-any-extension = 'yes'
+
+[tool.pylint.format]
+max-line-length = 119
+
+[tool.pylint.'MESSAGES CONTROL']
+extension-pkg-whitelist = "pydantic"
+disable = '''missing-docstring'''
+
+[tool.pylint.IMPORTS]
+allow-any-import-level = ''
+allow-wildcard-with-all = 'no'
+
+[tool.yapf]
+based_on_style = "pep8"
+spaces_before_comment = 4
+split_before_logical_operator = true
+column_limit = 119
+allow_split_before_dict_value = false # https://github.com/google/yapf/issues/392#issuecomment-407958737

@@ -1,0 +1,42 @@
+{
+    "python.envFile": "${workspaceFolder}/.env",
+    "python.formatting.yapfPath": "${workspaceFolder}/.venv/bin/yapf",
+    "python.analysis.typeCheckingMode": "strict",
+    "python.languageServer": "Pylance",
+    "python.formatting.provider": "yapf",
+    "[python]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "editor.rulers": [
+            119
+        ],
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "isort.path": [
+        "${workspaceFolder}/.venv/bin/isort"
+    ],
+    "python.linting.pylintPath": "${workspaceFolder}/.venv/bin/pylint",
+    "python.linting.mypyArgs": [
+        "--strict",
+        "--follow-imports=silent",
+        "--ignore-missing-imports",
+        "--show-column-numbers",
+        "--no-pretty",
+        "--namespace-packages",
+        "--no-implicit-reexport"
+    ],
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.pytestEnabled": true,
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "\\.py$",
+                "cmd": "${workspaceFolder}/.venv/bin/unify --in-place ${file}"
+            }
+        ]
+    },
+}
