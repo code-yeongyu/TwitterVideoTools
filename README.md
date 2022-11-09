@@ -13,6 +13,7 @@
 ### All-in-one
 
 ```sh
+gh repo clone code-yeongyu/python3.9-project-template # clone the code into your local
 python3 -m pip install poetry
 poetry install # install dependencies
 code --install-extension emeraldwalk.RunOnSave # to force single quote
