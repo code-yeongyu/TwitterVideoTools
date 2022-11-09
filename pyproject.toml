@@ -18,6 +18,7 @@ pytest = "^7.2.0"
 pytest-cov = "^4.0.0"
 pylint-quotes = "^0.2.3"
 unify = "^0.5"
+toml = "^0.10.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
