@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "python project template for 3.9"
+name = "twitter_liked_video_downloader"
 version = "0.1.0"
-description = "A required packages pre-installed pyproject"
+description = "Twitter Liked Video Downloader"
 authors = []
 license = "MIT"
 
