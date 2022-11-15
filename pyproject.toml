@@ -8,6 +8,8 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.9"
 pydantic = "^1.10.2"
+playwright = "^1.27.1"
+youtube_dl = "^2021.12.17"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.982"
@@ -55,7 +57,8 @@ max-line-length = 119
 
 [tool.pylint.'MESSAGES CONTROL']
 extension-pkg-whitelist = "pydantic"
-disable = '''missing-docstring'''
+disable = '''missing-docstring
+'''
 
 [tool.pylint.IMPORTS]
 allow-any-import-level = ''

@@ -73,6 +73,17 @@ python-versions = ">=3.7"
 test = ["pytest (>=6)"]
 
 [[package]]
+name = "greenlet"
+version = "1.1.3"
+description = "Lightweight in-process concurrent programming"
+category = "main"
+optional = false
+python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
+
+[package.extras]
+docs = ["sphinx"]
+
+[[package]]
 name = "iniconfig"
 version = "1.1.1"
 description = "iniconfig: brain-dead simple config-ini parsing"
@@ -160,6 +171,18 @@ docs = ["furo (>=2022.9.29)", "proselint (>=0.13)", "sphinx-autodoc-typehints (>
 test = ["appdirs (==1.4.4)", "pytest-cov (>=4)", "pytest-mock (>=3.10)", "pytest (>=7.2)"]
 
 [[package]]
+name = "playwright"
+version = "1.27.1"
+description = "A high-level API to automate web browsers"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+greenlet = "1.1.3"
+pyee = "8.1.0"
+
+[[package]]
 name = "pluggy"
 version = "1.0.0"
 description = "plugin and hook calling mechanisms for python"
@@ -185,6 +208,14 @@ typing-extensions = ">=4.1.0"
 [package.extras]
 dotenv = ["python-dotenv (>=0.10.4)"]
 email = ["email-validator (>=1.0.3)"]
+
+[[package]]
+name = "pyee"
+version = "8.1.0"
+description = "A port of node.js's EventEmitter to python."
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "pylint"
@@ -333,10 +364,18 @@ category = "dev"
 optional = false
 python-versions = "*"
 
+[[package]]
+name = "youtube-dl"
+version = "2021.12.17"
+description = "YouTube video downloader"
+category = "main"
+optional = false
+python-versions = "*"
+
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "c0e4eca2effb95e5426dd8102bc80da0cc5d7efbfca07a648eebade68a7ebeef"
+content-hash = "9a593fb5f767588408a132c2d405b67b432db0540b470b58f8c122ace2dbfd98"
 
 [metadata.files]
 astroid = []
@@ -345,6 +384,7 @@ colorama = []
 coverage = []
 dill = []
 exceptiongroup = []
+greenlet = []
 iniconfig = []
 isort = []
 lazy-object-proxy = []
@@ -353,8 +393,10 @@ mypy = []
 mypy-extensions = []
 packaging = []
 platformdirs = []
+playwright = []
 pluggy = []
 pydantic = []
+pyee = []
 pylint = []
 pylint-quotes = []
 pyparsing = []
@@ -368,3 +410,4 @@ unify = []
 untokenize = []
 wrapt = []
 yapf = []
+youtube-dl = []
