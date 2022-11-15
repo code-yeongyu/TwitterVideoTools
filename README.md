@@ -1,33 +1,29 @@
-# Python 3.9 Project Template with poetry
-
-- Python 3.9
-- strict type checking using mypy
-- amazing linters & formatters (yapf, pylint, isort)
-  - `unify` for forcing single-quote
-- testing (pytest)
-- powerful class model (pydantic)
-- vscode launch & formatting setups
+# twitter_liked_video_downloader
 
 ## Setup
 
-### All-in-one
+### Settings file
 
-```sh
-gh repo clone code-yeongyu/python3.9-project-template # clone the code into your local
-python3 -m pip install poetry
-poetry install # install dependencies
-code --install-extension emeraldwalk.RunOnSave # to force single quote
+Create `settings.json` at the root of the directory, and fill like below.
+
+```json
+{
+  "username": "USERNAME",
+  "PASSWORD": "PASSWORD",
+  "recent_liked": "Your recent liked tweet link",
+  "videos_path": "video output path"
+}
 ```
 
-Done!
+### Install Requirements
 
-## Test
+```sh
+poetry install
+```
+
+## Run
 
 ```sh
 poetry shell
-pytest .
-```
-
-```sh
-python main.py
+python3 main.py
 ```
