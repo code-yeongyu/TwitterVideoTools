@@ -4,7 +4,7 @@ from os import system
 from playwright.sync_api import sync_playwright
 from pydantic import BaseModel
 
-from utils import TwitterCrawler, video_downloader
+from utils import TwitterCrawler, VideoDownloader
 
 
 class Settings(BaseModel):
@@ -68,6 +68,7 @@ def main() -> None:
 
         browser.close()
 
+    video_downloader = VideoDownloader()
     video_downloader.download_videos(links)
     move_videos(settings.videos_path)
 
