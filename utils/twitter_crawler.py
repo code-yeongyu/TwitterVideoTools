@@ -15,7 +15,8 @@ class TwitterCrawler:
         current_height: int = self.page.evaluate('(window.innerHeight + window.scrollY)')
         return current_height
 
-    def login(self, username: str, password: str) -> None:
+    def login(self, username: str, password: str, timeout: Optional[float] = 10000) -> None:
+        print('Logging in...')
         self.page.goto('https://twitter.com/i/flow/login')
         self.page.wait_for_selector('label:has-text(\"Phone, email, or username\") div >> nth=1')
         self.page.get_by_label('Phone, email, or username').click()
@@ -47,6 +48,8 @@ class TwitterCrawler:
             new_links = self._get_article_links_in_current_screen()
             links.extend(new_links)
             links = list(set(links))
+
+            print(f'Found {len(links)} liked tweets.')
 
             if until_link in links:
                 break
