@@ -1,17 +1,9 @@
 import json
-from typing import Optional
 
 from playwright.sync_api import sync_playwright
-from pydantic import BaseModel
 
+from models import Settings
 from utils import TwitterCrawler, VideoDownloader
-
-
-class Settings(BaseModel):
-    username: str
-    password: str
-    recent_liked: str
-    videos_path: Optional[str] = None
 
 
 def get_settings() -> Settings:
