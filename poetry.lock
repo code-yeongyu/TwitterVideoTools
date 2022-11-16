@@ -409,6 +409,22 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "types-beautifulsoup4"
+version = "4.11.6.1"
+description = "Typing stubs for beautifulsoup4"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "types-invoke"
+version = "1.7.3.5"
+description = "Typing stubs for invoke"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "types-requests"
 version = "2.28.11.4"
 description = "Typing stubs for requests"
@@ -494,7 +510,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "d6bde9cf23f58191672d6a67d887b6a69187a4cb5f2fe56693fc7482fffe1621"
+content-hash = "9cfe0000134653e60fab4d1ffe360a9d97ffca1c6240344ae662aab76b1328d3"
 
 [metadata.files]
 astroid = []
@@ -532,6 +548,8 @@ soupsieve = []
 toml = []
 tomli = []
 tomlkit = []
+types-beautifulsoup4 = []
+types-invoke = []
 types-requests = []
 types-urllib3 = []
 typing-extensions = []
