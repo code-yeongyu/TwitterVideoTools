@@ -69,7 +69,7 @@ def main() -> None:
         browser.close()
 
     video_downloader = VideoDownloader()
-    video_downloader.download_videos(links)
+    video_downloader.download_videos(links, settings.username, settings.password)
     move_videos(settings.videos_path)
 
 
