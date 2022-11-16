@@ -21,7 +21,10 @@ class TwitterCrawler:
         self.page.get_by_label('Phone, email, or username').click()
         self.page.get_by_label('Phone, email, or username').fill(username)
         self.page.get_by_label('Phone, email, or username').press('Enter')
-        self.page.get_by_label('Password').fill(password)
+        try:
+            self.page.get_by_label('Password').fill(password, timeout=timeout)
+        except Error as error:
+            raise ValueError('Login failed; Maybe username or password is incorrect?') from error
         self.page.get_by_label('Password').press('Enter')
         self.page.wait_for_url('https://twitter.com/home')
 
