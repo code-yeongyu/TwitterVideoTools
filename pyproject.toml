@@ -10,6 +10,8 @@ python = "^3.9"
 pydantic = "^1.10.2"
 playwright = "^1.27.1"
 youtube_dl = "^2021.12.17"
+bs4 = "^0.0.1"
+requests = "^2.28.1"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.982"
@@ -22,6 +24,7 @@ pylint-quotes = "^0.2.3"
 unify = "^0.5"
 toml = "^0.10.2"
 invoke = "^1.7.3"
+types-requests = "^2.28.11"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
