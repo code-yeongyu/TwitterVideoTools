@@ -46,7 +46,6 @@ def backup_links(links: list[str]) -> None:
 
 def move_videos(path: str) -> None:
     system(f'mv videos/*.mp4 {path}')
-    system(f'cd {path}; fdupes . -rdN')
 
 
 def main() -> None:
