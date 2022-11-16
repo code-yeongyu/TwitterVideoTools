@@ -2,14 +2,7 @@ import json
 
 from playwright.sync_api import sync_playwright
 
-from models import Settings
-from utils import TwitterCrawler, VideoDownloader
-
-
-def get_settings() -> Settings:
-    with open('settings.json', 'r', encoding='utf-8') as settings_file:
-        settings_dict: dict[str, str] = json.load(settings_file)
-    return Settings.parse_obj(settings_dict)
+from utils import TwitterCrawler, VideoDownloader, get_settings
 
 
 def is_new_video_exists(crawler: TwitterCrawler, username: str, recent_liked: str) -> bool:
