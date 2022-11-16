@@ -39,6 +39,11 @@ def save_updated_recent_likes(crawler: TwitterCrawler, username: str) -> None:
         json.dump(settings.dict(), settings_file, indent=4)
 
 
+def backup_links(links: list[str]) -> None:
+    with open('links.txt', 'w', encoding='utf-8') as links_file:
+        links_file.write('\n'.join(links))
+
+
 def move_videos(path: str) -> None:
     system(f'mv videos/*.mp4 {path}')
     system(f'cd {path}; fdupes . -rdN')
@@ -58,6 +63,7 @@ def main() -> None:
             return
 
         links = get_twitter_links(crawler, settings.username, settings.recent_liked)
+        backup_links(links)
         save_updated_recent_likes(crawler, settings.username)
 
         browser.close()

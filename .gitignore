@@ -1,8 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
+# twitter_liked_videos_downloader
 settings.json
-
-### Outputs
+links.txt
 videos/
 
 ### Python ###
