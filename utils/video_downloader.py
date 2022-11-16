@@ -12,35 +12,44 @@ from .twitter_crawler import TwitterCrawler
 
 
 class VideoDownloader:
-    failed_videos: list[str] = []
+    video_output_path: str = 'videos'
+    username: Optional[str] = None
+    password: Optional[str] = None
 
-    def download_videos(
+    def __init__(
         self,
-        links: list[str],
+        video_output_path: Optional[str] = None,
         username: Optional[str] = None,
         password: Optional[str] = None,
-    ) -> None:
-        arguments = [(link, username, password) for link in links]
+    ):
+        self.video_output_path = video_output_path or self.video_output_path
+        self.username = username
+        self.password = password
+
+    def download_videos(self, links: list[str]) -> None:
+        arguments = [(link, ) for link in links]
         self._execute_parallel(
             self.download_video,
             arguments,
         )
 
-    def download_video(self, link: str, username: Optional[str] = None, password: Optional[str] = None) -> None:
+    def download_video(self, link: str) -> None:
         try:
             self._download_public_video(link)
         except DownloadError as error:
-            if not username or not password:
+            if not self.username or not self.password:
                 raise ValueError('Username and password are required for private videos') from error
             print('Failed to download video, trying to download with authentication ...')
-            self._download_twitter_private_video(link, username, password)
-            self.failed_videos.append(link)
+            self._download_twitter_private_video(link, self.username, self.password)
         except YoutubeDLError:
             link = link.replace('\n', '')
             print(f'{link} failed')
 
     def _download_public_video(self, link: str, video_filename: Optional[str] = None) -> None:
-        youtube_dl_output_template = f'videos/{video_filename}' if video_filename else 'videos/%(title)s.%(ext)s'
+        youtube_dl_output_template = \
+            f'{self.video_output_path}/{video_filename}' \
+                if video_filename else \
+            f'{self.video_output_path}/%(title)s.%(ext)s'
         youtube_dl_option = {'format': 'bestvideo/best', 'outtmpl': youtube_dl_output_template}
         with youtube_dl.YoutubeDL(youtube_dl_option) as youtube_dl_downloader:
             youtube_dl_downloader.download([link])

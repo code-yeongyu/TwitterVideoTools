@@ -1,5 +1,5 @@
 import json
-from os import system
+from typing import Optional
 
 from playwright.sync_api import sync_playwright
 from pydantic import BaseModel
@@ -11,7 +11,7 @@ class Settings(BaseModel):
     username: str
     password: str
     recent_liked: str
-    videos_path: str
+    videos_path: Optional[str] = None
 
 
 def get_settings() -> Settings:
@@ -44,10 +44,6 @@ def backup_links(links: list[str]) -> None:
         links_file.write('\n'.join(links))
 
 
-def move_videos(path: str) -> None:
-    system(f'mv videos/*.mp4 {path}')
-
-
 def main() -> None:
     settings = get_settings()
 
@@ -67,9 +63,8 @@ def main() -> None:
 
         browser.close()
 
-    video_downloader = VideoDownloader()
-    video_downloader.download_videos(links, settings.username, settings.password)
-    move_videos(settings.videos_path)
+    video_downloader = VideoDownloader(settings.videos_path, settings.username, settings.password)
+    video_downloader.download_videos(links)
 
 
 main()
