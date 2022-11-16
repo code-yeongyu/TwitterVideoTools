@@ -1,5 +1,7 @@
 # twitter_liked_video_downloader
 
+- A multiprocessing supported twitter video downloader
+
 ## Setup
 
 ### Settings file
