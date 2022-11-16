@@ -1,6 +1,7 @@
 import time
+from typing import Optional
 
-from playwright.sync_api import Error, Page
+from playwright.sync_api import Error, Page, Request
 
 
 class TwitterCrawler:
@@ -52,6 +53,27 @@ class TwitterCrawler:
     def get_recent_liked_tweet(self, username: str) -> str:
         self._open_liked_tweets(username)
         return self._get_article_links_in_current_screen()[0]
+
+    def get_video_of_tweet(self, link: str, timeout: Optional[float] = 5000) -> Optional[tuple[str, list[str]]]:
+        links: list[str] = []
+
+        def _request_m3u8_capture_handler(request: Request) -> None:
+            if 'm3u8' in request.url:
+                links.append(request.url)
+
+        self.page.on('request', _request_m3u8_capture_handler)
+        self.page.goto(link)
+        try:
+            self.page.wait_for_selector('video', timeout=timeout)
+        except Error:
+            return None
+
+        return self._get_video_name(), links
+
+    def _get_video_name(self) -> str:
+        uploader = self.page.get_by_test_id('primaryColumn').get_by_role('link').nth(0).inner_text().strip()
+        content = self.page.get_by_role('article').get_by_test_id('tweetText').nth(0).inner_text().strip()
+        return f'{uploader} - {content}.mp4'
 
     def _open_liked_tweets(self, username: str) -> None:
         self.page.goto(f'https://twitter.com/{username}/likes')
