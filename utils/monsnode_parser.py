@@ -6,23 +6,27 @@ import requests
 from bs4 import BeautifulSoup
 
 
-class MonsnodeParser:
+class MonsnodeParser:    # pylint: disable=too-few-public-methods
     TARGET_URL = 'https://monsnode.com/'
+
+    def _parse_video_name(self, soup: BeautifulSoup) -> str:
+
+        uploader_name = soup.select('body > div:nth-child(2) > div:nth-child(2) > div:nth-child(5) > b')[0].text
+        title = soup.select('body > div:nth-child(2) > div:nth-child(2) > div:nth-child(2)')[0].text
+        title = title.replace('/', '_')
+        title = title.replace('\n', '')
+        return f'{uploader_name} - {title}.mp4'
+
+    def _parse_video_url(self, soup: BeautifulSoup) -> str:
+        video_path = typing.cast(str,
+                                 soup.select('body > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)')[0]['href'])
+        return self.TARGET_URL + video_path
 
     def get_video(self, link: str, timeout: float = 5000) -> tuple[str, str]:
         request = requests.get(link, timeout=timeout)
         soup = BeautifulSoup(request.text, 'html.parser')
 
-        uploader_name = soup.select('body > div:nth-child(2) > div:nth-child(2) > div:nth-child(5) > b')[0].text
+        video_name = self._parse_video_name(soup)
+        link = self._parse_video_url(soup)
 
-        title = soup.select('body > div:nth-child(2) > div:nth-child(2) > div:nth-child(2)')[0].text
-        title = title.replace('/', '_')
-        title = title.replace('\n', '')
-        title = f'{uploader_name} - {title}'
-
-        video_path: str = typing.cast(
-            str,
-            soup.select('body > div:nth-child(2) > div:nth-child(1) > a:nth-child(2)')[0]['href'])
-        video_url = self.TARGET_URL + video_path
-
-        return title, video_url
+        return video_name, link
