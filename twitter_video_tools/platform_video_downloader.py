@@ -1,7 +1,7 @@
 from typing import Optional
 
 from playwright.sync_api import sync_playwright
-from youtube_dl.utils import YoutubeDLError
+from youtube_dl.utils import DownloadError, YoutubeDLError
 
 from .monsnode_parser import MonsnodeParser
 from .twitter_crawler import TwitterCrawler
@@ -31,8 +31,6 @@ class PlatformVideoDownloader:
             youtube_dl_option = self._make_youtube_dl_option()
             youtube_dl_wrapper.download([link], youtube_dl_option)
         except YoutubeDLError as exception:
-            if 'not authorized' not in str(exception):
-                raise exception
             if not username or not password:
                 raise Exception('Username and password are required to download private Twitter video') from exception
 
