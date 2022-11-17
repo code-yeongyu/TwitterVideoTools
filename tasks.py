@@ -10,7 +10,7 @@ import monkey_patch_invoke as _
 @task
 def test(context: Context) -> None:
     """Run tests."""
-    context.run('pytest . ', pty=True)
+    context.run('pytest . --cov=. --cov-report=xml', pty=True)
 
 
 def _get_today_timestamp() -> str:
