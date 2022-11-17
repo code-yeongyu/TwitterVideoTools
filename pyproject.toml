@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "twitter_liked_video_downloader"
+name = "twitter_video_tools"
 version = "0.1.0"
-description = "Twitter Liked Video Downloader"
+description = "Twitter Video Tools"
 authors = []
 license = "MIT"
 
