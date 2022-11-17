@@ -421,6 +421,14 @@ python-versions = "*"
 types-urllib3 = "<1.27"
 
 [[package]]
+name = "types-toml"
+version = "0.10.8.1"
+description = "Typing stubs for toml"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "types-urllib3"
 version = "1.26.25.3"
 description = "Typing stubs for urllib3"
@@ -495,7 +503,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "2a5f02a7c37782be142bfa761c61747f276d6cea21f2181495e928d3a40f3812"
+content-hash = "c2b2cf7b32e476eca1df1e5ec017d9383c9ffa0184363b4228cefaa257515a39"
 
 [metadata.files]
 astroid = []
@@ -535,6 +543,7 @@ tomlkit = []
 types-beautifulsoup4 = []
 types-invoke = []
 types-requests = []
+types-toml = []
 types-urllib3 = []
 typing-extensions = []
 unify = []
