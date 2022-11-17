@@ -53,7 +53,7 @@ class PlatformVideoDownloader:
         password: str,
     ) -> list[tuple[str, str]]:
         with sync_playwright() as playwright_sync:
-            browser = playwright_sync.webkit.launch(headless=False)
+            browser = playwright_sync.webkit.launch(headless=True)
             page = browser.new_page()
             crawler = TwitterCrawler(page)
             crawler.login(username, password)
