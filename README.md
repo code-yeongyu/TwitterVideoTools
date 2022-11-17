@@ -1,31 +1,18 @@
-# twitter_liked_video_downloader
+# Twitter Video Tools
 
-- A multiprocessing supported twitter video downloader
+- A multi-processing supported video downloader
+- supports downloading videos from twitter (or specific user from twitter) && monsnode.
 
-## Setup
+## Install
 
-### Settings file
-
-Create `settings.json` at the root of the directory, and fill like below.
-
-```json
-{
-  "username": "USERNAME",
-  "PASSWORD": "PASSWORD",
-  "recent_liked": "Your recent liked tweet link",
-  "videos_path": "video output path"
-}
-```
-
-### Install Requirements
+### PIP
 
 ```sh
-poetry install
+pip install twitter-video-tools
 ```
 
-## Run
+### Poetry
 
 ```sh
-poetry shell
-python3 main.py
+poetry add twitter-video-tools
 ```
