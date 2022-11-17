@@ -5,7 +5,7 @@ import youtube_dl
 from .execute_parallel import execute_parallel
 
 
-class YoutubeDLWrapper:
+class YoutubeDLWrapper:    # pylint: disable=too-few-public-methods
     """A YoutubeDL wrapper class for supporting python embedded multi-processing"""
 
     def _youtube_dl_download_video(self, link: str, youtube_dl_option: Optional[dict[str, str]] = None) -> None:

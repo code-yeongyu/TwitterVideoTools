@@ -2,7 +2,7 @@
 import pytest
 import requests
 
-from utils import MonsnodeParser
+from twitter_video_tools.utils import MonsnodeParser
 
 
 def test_is_target_reachable(monsnode_parser: MonsnodeParser) -> None:
