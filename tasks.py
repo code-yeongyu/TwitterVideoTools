@@ -13,12 +13,8 @@ def test(context: Context) -> None:
     context.run('pytest . --cov=. --cov-report=xml', pty=True)
 
 
-def _get_today_timestamp() -> str:
-    return datetime.datetime.utcnow().strftime('%Y.%m.%d')
-
-
 @task
-def release(context: Context) -> None:
+def release(context: Context, version: str) -> None:
     """Build & Publish to PyPI."""
 
     # load pyproject
@@ -28,7 +24,7 @@ def release(context: Context) -> None:
         pyproject_string = pyproject_file.read()
     pyproject = toml.loads(pyproject_string)
     # change version to today datetime
-    pyproject['tool']['poetry']['version'] = _get_today_timestamp()
+    pyproject['tool']['poetry']['version'] = version
     with open(pyproject_path, 'w', encoding='utf-8') as pyproject_file:
         toml.dump(pyproject, pyproject_file)
 
