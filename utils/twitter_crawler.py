@@ -30,16 +30,28 @@ class TwitterCrawler:
         self.page.wait_for_url('https://twitter.com/home')
 
     def get_all_liked_tweets(self, username: str, scroll_timeout: float = 0.8) -> list[str]:
-        return self.get_liked_tweets_until(username, 'nothing', scroll_timeout)
+        """Get the username's all liked tweets
+        Returns the list of links of liked tweets
+        """
+        return self.get_liked_tweets_until(
+            username, 'nothing', scroll_timeout
+        )    # 'nothing' was intended because the given `until_link` would be never found on the links list
 
     def get_liked_tweets_until(self, username: str, until_link: str, scroll_timeout: float = 0.8) -> list[str]:
-        self._open_liked_tweets(username)
+        """Scrolling down the list of liked tweets until the given `until_link` found
+        Returns the list of links of liked tweets
+        """
+        self._goto_liked_tweets(username)
         links: list[str] = []
 
         previous_height = self.page_current_height
         while True:
+            # 1. scroll down
+            # 2. get the link of tweets in the current screen(tweets are not reachable if it's not rendering)
+            # 3. break if page reaches to the bottom or the given `until_link` found
+
             self.page.mouse.wheel(0, 1500)
-            time.sleep(scroll_timeout)    # wait for mouse cursor down
+            time.sleep(scroll_timeout)    # wait for mouse wheel to scroll down
             is_page_bottom = self.page_current_height == previous_height
             if is_page_bottom:
                 break
@@ -57,31 +69,31 @@ class TwitterCrawler:
         return links
 
     def get_recent_liked_tweet(self, username: str) -> str:
-        self._open_liked_tweets(username)
+        self._goto_liked_tweets(username)
         return self._get_article_links_in_current_screen()[0]
 
-    def get_video_of_tweet(self, link: str, timeout: Optional[float] = 5000) -> Optional[tuple[str, list[str]]]:
-        links: list[str] = []
+    def get_video_of_tweet(self, link: str, timeout: Optional[float] = 5000) -> list[tuple[str, str]]:
+        video_links: list[str] = []
 
         def _request_m3u8_capture_handler(request: Request) -> None:
             if 'm3u8' in request.url:
-                links.append(request.url)
+                video_links.append(request.url)
 
         self.page.on('request', _request_m3u8_capture_handler)
         self.page.goto(link)
         try:
             self.page.wait_for_selector('video', timeout=timeout)
         except Error:
-            return None
+            return []
 
-        return self._get_video_name(), links
+        return [(f'{self._parse_tweet_name()}_{index}.mp4', link) for index, link in enumerate(video_links)]
 
-    def _get_video_name(self) -> str:
+    def _parse_tweet_name(self) -> str:
         uploader = self.page.get_by_test_id('primaryColumn').get_by_role('link').nth(0).inner_text().strip()
         content = self.page.get_by_role('article').get_by_test_id('tweetText').nth(0).inner_text().strip()
-        return f'{uploader} - {content}.mp4'
+        return f'{uploader} - {content}'
 
-    def _open_liked_tweets(self, username: str) -> None:
+    def _goto_liked_tweets(self, username: str) -> None:
         self.page.goto(f'https://twitter.com/{username}/likes')
         self.page.wait_for_selector('article')
 
@@ -98,7 +110,7 @@ class TwitterCrawler:
                     for i in range(article_length)
                 ]
                 break
-            except Error:
-                self.page.mouse.wheel(0, 500)
+            except Error:    # if articles in the page are not reachable
+                self.page.mouse.wheel(0, 500)    #  scrolling down to refresh the articles
 
         return links
