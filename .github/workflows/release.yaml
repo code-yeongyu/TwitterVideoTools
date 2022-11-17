@@ -32,5 +32,5 @@ jobs:
 
       - name: Authenticate to PyPI
         run:
-          poetry config http-basic.pypi ${{ secrets.PYPI_USERNAME }} ${{ secrets.PYPI_PASSWORD }};\
+          poetry config http-basic.pypi ${{ secrets.PYPI_USERNAME }} ${{ secrets.PYPI_PASSWORD }};
           poetry run invoke release ${{ github.event.release.name }}
