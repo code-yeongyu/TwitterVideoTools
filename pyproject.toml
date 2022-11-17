@@ -27,7 +27,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 include = ["LICENSE"]
-version = "2022.11.17"
+version = "0.0.0"
 
 [tool.mypy]
 disallow_untyped_defs = true
