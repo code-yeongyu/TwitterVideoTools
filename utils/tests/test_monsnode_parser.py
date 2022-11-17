@@ -1,19 +1,39 @@
+# pylint: disable=redefined-outer-name
 import pytest
+import requests
 
 from utils import MonsnodeParser
 
 
-class TestMonsodeParser:    # pylint: disable=too-few-public-methods
-    monsnode_parser = MonsnodeParser()
+def test_is_target_reachable(monsnode_parser: MonsnodeParser) -> None:
+    # given
+    expected_target_reachable = False
+    try:
+        requests.get(monsnode_parser.TARGET_URL, timeout=monsnode_parser.timeout)
+        expected_target_reachable = True
+    except requests.exceptions.ConnectionError:
+        expected_target_reachable = False
 
-    @pytest.mark.skipif(not monsnode_parser.is_target_reachable(), reason='Monsnode is currently not reachable')
-    def test_get_video_name(self) -> None:
-        # given
-        target_video_link = 'https://monsnode.com/v1506575871309589251'
+    # when
+    actual_target_reachable = monsnode_parser.is_target_reachable()
 
-        # when
-        video_name, video_link = self.monsnode_parser.get_video(target_video_link)
+    # then
+    assert actual_target_reachable == expected_target_reachable
 
-        # then
-        assert video_name == 'ウォーター(@waterpokepwpr) - 剣盾ずっとやってきたけど、こんな経験初めて。 https:__t.co_LT6dHwYitY.mp4'
-        assert video_link == 'https://monsnode.com/redirect.php?v=13768280'
+
+@pytest.mark.skipif(not MonsnodeParser().is_target_reachable(), reason='Monsnode is currently not reachable')
+def test_get_video_name(monsnode_parser: MonsnodeParser) -> None:
+    # given
+    target_video_link = 'https://monsnode.com/v1506575871309589251'
+
+    # when
+    video_name, video_link = monsnode_parser.get_video(target_video_link)
+
+    # then
+    assert video_name == 'ウォーター(@waterpokepwpr) - 剣盾ずっとやってきたけど、こんな経験初めて。 https:__t.co_LT6dHwYitY.mp4'
+    assert video_link == 'https://monsnode.com/redirect.php?v=13768280'
+
+
+@pytest.fixture
+def monsnode_parser() -> MonsnodeParser:
+    return MonsnodeParser()
