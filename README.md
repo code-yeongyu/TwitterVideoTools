@@ -1,4 +1,8 @@
 # Twitter Video Tools
+[![PyPI version](https://badge.fury.io/py/twitter-video-tools.svg)](https://badge.fury.io/py/twitter-video-tools)
+[![Test](https://github.com/code-yeongyu/twitter_video_tools/actions/workflows/test.yaml/badge.svg?branch=master)](https://github.com/code-yeongyu/twitter_video_tools/actions/workflows/test.yaml)
+[![codecov](https://codecov.io/gh/code-yeongyu/twitter_video_tools/branch/master/graph/badge.svg?token=97K8BBWOH7)](https://codecov.io/gh/code-yeongyu/twitter_video_tools)
+
 
 - A multi-processing supported video downloader
 - supports downloading videos from twitter (or specific user from twitter) && monsnode.
