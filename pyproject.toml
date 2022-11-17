@@ -1,13 +1,12 @@
 [tool.poetry]
 name = "twitter_video_tools"
-version = "0.1.0"
-description = "Twitter Video Tools"
+description = "Twitter Video Tools is a multi-processing supported video downloader, supports videos from twitter (or specific user from twitter) && monsnode."
+version = "0.1.1"
 authors = []
 license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-pydantic = "^1.10.2"
 playwright = "^1.27.1"
 youtube_dl = "^2021.12.17"
 bs4 = "^0.0.1"
