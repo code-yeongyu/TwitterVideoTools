@@ -1,21 +1,21 @@
 # Twitter Video Tools
 [![PyPI version](https://badge.fury.io/py/twitter-video-tools.svg)](https://badge.fury.io/py/twitter-video-tools)
+[![Package Release Status](https://github.com/code-yeongyu/twitter_video_tools/actions/workflows/release.yaml/badge.svg)](https://github.com/code-yeongyu/twitter_video_tools/actions/workflows/release.yaml)
 [![Test](https://github.com/code-yeongyu/twitter_video_tools/actions/workflows/test.yaml/badge.svg?branch=master)](https://github.com/code-yeongyu/twitter_video_tools/actions/workflows/test.yaml)
 [![codecov](https://codecov.io/gh/code-yeongyu/twitter_video_tools/branch/master/graph/badge.svg?token=97K8BBWOH7)](https://codecov.io/gh/code-yeongyu/twitter_video_tools)
-
 
 - A multi-processing supported video downloader
 - supports downloading videos from twitter (or specific user from twitter) && monsnode.
 
 ## Install
 
-### PIP
+### with PIP
 
 ```sh
 pip install twitter-video-tools
 ```
 
-### Poetry
+### with Poetry (Recommended)
 
 ```sh
 poetry add twitter-video-tools
