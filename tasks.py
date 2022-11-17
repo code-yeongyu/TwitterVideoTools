@@ -18,8 +18,8 @@ def _get_today_timestamp() -> str:
 
 
 @task
-def publish(context: Context) -> None:
-    """Publish to PyPI."""
+def release(context: Context) -> None:
+    """Build & Publish to PyPI."""
 
     # load pyproject
     pyproject_path = 'pyproject.toml'
