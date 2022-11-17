@@ -1,7 +1,10 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.poetry]
 name = "twitter_video_tools"
 description = "Twitter Video Tools is a multi-processing supported video downloader, supports videos from twitter (or specific user from twitter) && monsnode."
-version = "0.0.1"
 authors = []
 license = "MIT"
 readme = "README.md"
@@ -24,6 +27,31 @@ classifiers = [
     "Typing :: Typed",
 ]
 include = ["LICENSE"]
+version = "2022.11.17"
+
+[tool.mypy]
+disallow_untyped_defs = true
+disallow_any_unimported = true
+no_implicit_optional = true
+check_untyped_defs = true
+warn_return_any = true
+show_error_codes = true
+warn_unused_ignores = true
+python_version = 3.9
+disable_error_code = ["no-untyped-call"]
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
+
+[tool.yapf]
+based_on_style = "pep8"
+spaces_before_comment = 4
+split_before_logical_operator = true
+column_limit = 119
+allow_split_before_dict_value = false
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -47,51 +75,19 @@ types-requests = "^2.28.11"
 types-beautifulsoup4 = "^4.11.6"
 types-invoke = "^1.7.3"
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.mypy]
-plugins = ["pydantic.mypy"]
-disallow_untyped_defs = true
-disallow_any_unimported = true
-no_implicit_optional = true
-check_untyped_defs = true
-warn_return_any = true
-show_error_codes = true
-warn_unused_ignores = true
-python_version = 3.9
-disable_error_code = [
-    "no-untyped-call",
-] # not all python modules are typed correctly
-
-[tool.pydantic-mypy]
-init_forbid_extra = true
-init_typed = true
-warn_required_dynamic_aliases = true
-warn_untyped_fields = true
-
 [tool.pylint.MASTER]
-load-plugins = 'pylint_quotes'
-persistent = 'yes'
-suggestion-mode = 'yes'
-unsafe-load-any-extension = 'yes'
+load-plugins = "pylint_quotes"
+persistent = "yes"
+suggestion-mode = "yes"
+unsafe-load-any-extension = "yes"
 
 [tool.pylint.format]
 max-line-length = 119
 
-[tool.pylint.'MESSAGES CONTROL']
+[tool.pylint."MESSAGES CONTROL"]
 extension-pkg-whitelist = "pydantic"
-disable = '''missing-docstring
-'''
+disable = "missing-docstring\n"
 
 [tool.pylint.IMPORTS]
-allow-any-import-level = ''
-allow-wildcard-with-all = 'no'
-
-[tool.yapf]
-based_on_style = "pep8"
-spaces_before_comment = 4
-split_before_logical_operator = true
-column_limit = 119
-allow_split_before_dict_value = false # https://github.com/google/yapf/issues/392#issuecomment-407958737
+allow-any-import-level = ""
+allow-wildcard-with-all = "no"
