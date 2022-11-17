@@ -30,8 +30,6 @@ jobs:
         if: steps.cache-dependencies.cache-hit != 'true'
         run: poetry install
 
-      - run: echo 'release ${{ github.event.release.name }}'
-
       - name: Publish to PyPI
         run:
           poetry config http-basic.pypi ${{ secrets.PYPI_USERNAME }} ${{ secrets.PYPI_PASSWORD }};
