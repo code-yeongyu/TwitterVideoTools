@@ -5,7 +5,7 @@ from youtube_dl.utils import YoutubeDLError
 
 from .monsnode_parser import MonsnodeParser
 from .twitter_crawler import TwitterCrawler
-from .youtube_dl_wrapper import youtube_dl_wrapper
+from .utils.youtube_dl_wrapper import youtube_dl_wrapper
 
 
 class PlatformVideoDownloader:
