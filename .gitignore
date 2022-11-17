@@ -1,11 +1,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
-# twitter_liked_videos_downloader
-settings.json
-links.txt
-videos/
+# twitter_video_downloader
 playground.py
-extra.txt
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
