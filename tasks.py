@@ -44,7 +44,7 @@ def release(context: Context) -> None:
     except UnexpectedExit as exception:
         with open(pyproject_path, 'w', encoding='utf-8') as pyproject_file:
             pyproject_file.write(pyproject_string)
-        raise exception
+        raise exception from exception
 
     # recover to original
     with open(pyproject_path, 'w', encoding='utf-8') as pyproject_file:
