@@ -30,5 +30,8 @@ jobs:
         if: steps.cache-dependencies.cache-hit != 'true'
         run: poetry install
 
-      - name: Test
+      - name: Authenticate to PyPI
+        run: poetry http-basic.pypi ${{ secrets.PYPI_USERNAME }} ${{ secrets.PYPI_PASSWORD }}
+
+      - name: Release
         run: poetry run invoke release
