@@ -2,9 +2,11 @@ from __future__ import annotations
 
 from typing import Optional
 
-from .execute_parallel import execute_parallel
+from twitter_video_tools.platform_video_downloader import \
+    PlatformVideoDownloader
+from twitter_video_tools.utils import execute_parallel
+
 from .monsnode_parser import MonsnodeParser
-from .platform_video_downloader import PlatformVideoDownloader
 
 
 class VideoDownloader:
