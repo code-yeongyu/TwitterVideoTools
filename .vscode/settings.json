@@ -40,5 +40,8 @@
     },
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
-    "python.linting.mypyEnabled": true
+    "python.linting.mypyEnabled": true,
+    "[toml]": {
+        "editor.defaultFormatter": "tamasfe.even-better-toml"
+    }
 }
