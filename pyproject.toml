@@ -94,3 +94,17 @@ disable = "missing-docstring\n"
 [tool.pylint.IMPORTS]
 allow-any-import-level = ""
 allow-wildcard-with-all = "no"
+
+[tool.pyright]
+pythonVersion = "3.9"
+stubPath = "./.typings"
+venvPath = "./.venv"
+pythonPlatform = "All"
+typeCheckingMode = "strict"
+include = ["./twitter_video_tools"]
+exclude = ["**/node_modules", "**/__pycache__"]
+defineConstant = { DEBUG = true }
+useLibraryCodeForTypes = true
+verboseOutput = false
+reportMissingTypeStubs = true # even for 3rd party modules, it's required to create type stubs
+reportUnknownMemberType = false # for no typed modules
