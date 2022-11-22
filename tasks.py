@@ -1,5 +1,3 @@
-import datetime
-
 import toml
 from invoke import Context, task
 from invoke.exceptions import UnexpectedExit
