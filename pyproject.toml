@@ -76,6 +76,7 @@ types-requests = "^2.28.11"
 types-beautifulsoup4 = "^4.11.6"
 types-invoke = "^1.7.3"
 types-toml = "^0.10.8"
+pyright = "^1.1.280"
 
 [tool.pylint.MASTER]
 load-plugins = "pylint_quotes"
