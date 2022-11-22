@@ -209,6 +209,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "nodeenv"
+version = "1.7.0"
+description = "Node.js virtual environment builder"
+category = "dev"
+optional = false
+python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*"
+
+[[package]]
 name = "packaging"
 version = "21.3"
 description = "Core utilities for Python packages"
@@ -307,6 +315,21 @@ python-versions = ">=3.6.8"
 
 [package.extras]
 diagrams = ["railroad-diagrams", "jinja2"]
+
+[[package]]
+name = "pyright"
+version = "1.1.280"
+description = "Command line wrapper for pyright"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+nodeenv = ">=1.6.0"
+
+[package.extras]
+all = ["twine (>=3.4.1)"]
+dev = ["twine (>=3.4.1)"]
 
 [[package]]
 name = "pytest"
@@ -503,7 +526,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "c2b2cf7b32e476eca1df1e5ec017d9383c9ffa0184363b4228cefaa257515a39"
+content-hash = "ff5cc31a3e7d1cc201f1cdcd4e016c3b5c020836b969b56ab651b0f3ddc6e904"
 
 [metadata.files]
 astroid = []
@@ -525,6 +548,7 @@ lazy-object-proxy = []
 mccabe = []
 mypy = []
 mypy-extensions = []
+nodeenv = []
 packaging = []
 platformdirs = []
 playwright = []
@@ -533,6 +557,7 @@ pyee = []
 pylint = []
 pylint-quotes = []
 pyparsing = []
+pyright = []
 pytest = []
 pytest-cov = []
 requests = []

@@ -10,6 +10,7 @@ class YoutubeDLWrapper:    # pylint: disable=too-few-public-methods
 
     def _youtube_dl_download_video(self, link: str, youtube_dl_option: Optional[dict[str, str]] = None) -> None:
         with youtube_dl.YoutubeDL(youtube_dl_option) as youtube_dl_downloader:
+            youtube_dl_downloader: youtube_dl.YoutubeDL
             youtube_dl_downloader.download([link])
 
     def download(self, links: list[str], youtube_dl_option: Optional[dict[str, str]] = None) -> None:
