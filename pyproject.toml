@@ -97,7 +97,7 @@ allow-wildcard-with-all = "no"
 
 [tool.pyright]
 pythonVersion = "3.9"
-stubPath = "./.typings"
+stubPath = "./.type_stubs"
 venvPath = "./.venv"
 pythonPlatform = "All"
 typeCheckingMode = "strict"
