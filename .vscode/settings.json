@@ -1,8 +1,4 @@
 {
-    "python.envFile": "${workspaceFolder}/.env",
-    "python.formatting.yapfPath": "${workspaceFolder}/.venv/bin/yapf",
-    "python.languageServer": "Pylance",
-    "python.formatting.provider": "yapf",
     "[python]": {
         "editor.insertSpaces": true,
         "editor.tabSize": 4,
@@ -13,10 +9,14 @@
             "source.organizeImports": true
         }
     },
-    "isort.path": [
-        "${workspaceFolder}/.venv/bin/isort"
-    ],
+    "python.envFile": "${workspaceFolder}/.env",
+    "python.languageServer": "Pylance",
+    "python.formatting.provider": "yapf",
+    "python.formatting.yapfPath": "${workspaceFolder}/.venv/bin/yapf",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
     "python.linting.pylintPath": "${workspaceFolder}/.venv/bin/pylint",
+    "python.linting.mypyEnabled": true,
     "python.linting.mypyArgs": [
         "--strict",
         "--follow-imports=silent",
@@ -26,10 +26,13 @@
         "--namespace-packages",
         "--no-implicit-reexport"
     ],
+    "isort.path": [
+        "${workspaceFolder}/.venv/bin/isort"
+    ],
+    "python.testing.pytestEnabled": true,
     "python.testing.pytestArgs": [
         "."
     ],
-    "python.testing.pytestEnabled": true,
     "emeraldwalk.runonsave": {
         "commands": [
             {
@@ -38,9 +41,6 @@
             }
         ]
     },
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
-    "python.linting.mypyEnabled": true,
     "[toml]": {
         "editor.defaultFormatter": "tamasfe.even-better-toml"
     }
