@@ -29,13 +29,19 @@ poetry add twitter-video-tools
 - poetry
 - code editor (vscode recommended)
 
-### Quick Info of setups
+### Overview of Development Environments
 
-- strict type checking using mypy
-- amazing linters & formatters (`yapf`, `pylint`, `isort`)
-  - `unify` for forcing single-quote
-- unit test using `pytest`
-- vscode launch & formatting setups
+- Local
+  - vscode ready (launching, debugging, formatting)
+  - strict type checking using [mypy](https://github.com/python/mypy) & [pyright](https://github.com/microsoft/pyright)
+  - amazing linters & formatters ([`yapf`](https://github.com/google/yapf), [`pylint`](https://github.com/PyCQA/pylint), [`isort`](https://github.com/PyCQA/isort))
+    - `unify` for forcing single-quote
+  - unit test using [`pytest`](https://github.com/myint/unify)
+
+- GitHub Actions
+  - [All PRs are statically analyzed & checked by `yapf`, `pylint`, `pyright`, `mypy`](https://github.com/code-yeongyu/TwitterVideoTools/actions/workflows/check_code.yaml)
+  - [All PRs are tested with `pytest`](https://github.com/code-yeongyu/TwitterVideoTools/actions/workflows/test.yaml)
+  - [Can be released with Github Action when creating GitHub Releases](https://github.com/code-yeongyu/TwitterVideoTools/actions/workflows/release.yaml)
 
 ### All-in-one
 
