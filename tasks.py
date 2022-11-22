@@ -1,8 +1,39 @@
+# pyright: reportUnknownMemberType=false
+
 import toml
+from colorama import Fore
+from colorama import init as init_colorama
 from invoke import Context, task
 from invoke.exceptions import UnexpectedExit
 
 import monkey_patch_invoke as _
+
+
+@task
+def check_code_style(context: Context) -> None:
+    """Runs static analysis."""
+    PROJECT_PATH = 'twitter_video_tools'
+    init_colorama()
+
+    print(f'{Fore.MAGENTA}==========Check Code Styles with `yapf`=========={Fore.RESET}')
+    context.run(f'yapf --diff --recursive --parallel {PROJECT_PATH}', pty=True)
+    print(f'{Fore.GREEN}Yapf: Success{Fore.RESET}')
+
+    print(f'\n{Fore.MAGENTA}==========Check Code Styles with `pylint`=========={Fore.GREEN}')
+    context.run(f'pylint {PROJECT_PATH}', pty=True)
+
+
+@task
+def check_types(context: Context) -> None:
+    """Runs static analysis."""
+    PROJECT_PATH = 'twitter_video_tools'
+    init_colorama()
+
+    print(f'{Fore.CYAN}==========Check typings with `pyright`=========={Fore.RESET}')
+    context.run(f'pyright {PROJECT_PATH}', pty=True)
+
+    print(f'\n{Fore.CYAN}==========Check typings with `mypy`=========={Fore.RESET}')
+    context.run(f'mypy {PROJECT_PATH}', pty=True)
 
 
 @task

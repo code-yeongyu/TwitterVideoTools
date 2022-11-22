@@ -37,9 +37,9 @@ check_untyped_defs = true
 warn_return_any = true
 show_error_codes = true
 warn_unused_ignores = true
-ignore_missing_imports = true            # for 3rd party modules that aren't typed well
+ignore_missing_imports = true                                             # disables imported modules' type checking, use pyright instead
 python_version = 3.9
-disable_error_code = ["no-untyped-call"]
+disable_error_code = ["no-untyped-call", "no-redef", "no-any-unimported"]
 
 [tool.pydantic-mypy]
 init_forbid_extra = true
@@ -77,12 +77,14 @@ types-beautifulsoup4 = "^4.11.6"
 types-invoke = "^1.7.3"
 types-toml = "^0.10.8"
 pyright = "^1.1.280"
+colorama = "^0.4.6"
 
 [tool.pylint.MASTER]
 load-plugins = "pylint_quotes"
 persistent = "yes"
 suggestion-mode = "yes"
 unsafe-load-any-extension = "yes"
+variable-rgx = '((([a-z_][a-z0-9_]{2,})|(_[a-z0-9_]*)|(__[a-z][a-z0-9_]+__))$)|([A-Z_][A-Z0-9_]+$)' # allows CONSTANT_CASE in methods or in classes
 
 [tool.pylint.format]
 max-line-length = 119
@@ -97,7 +99,7 @@ allow-wildcard-with-all = "no"
 
 [tool.pyright]
 pythonVersion = "3.9"
-stubPath = "./.typings"
+stubPath = "./.type_stubs"
 venvPath = "./.venv"
 pythonPlatform = "All"
 typeCheckingMode = "strict"
