@@ -15,11 +15,15 @@ def check_code_style(context: Context) -> None:
     PROJECT_PATH = 'twitter_video_tools'
     init_colorama()
 
+    print(f'{Fore.MAGENTA}==========Check Code Styles with `isort`=========={Fore.GREEN}')
+    context.run(f'isort {PROJECT_PATH} --check --diff', pty=True)
+    print(f'{Fore.GREEN}isort: Success{Fore.RESET}')
+
     print(f'{Fore.MAGENTA}==========Check Code Styles with `yapf`=========={Fore.RESET}')
     context.run(f'yapf --diff --recursive --parallel {PROJECT_PATH}', pty=True)
-    print(f'{Fore.GREEN}Yapf: Success{Fore.RESET}')
+    print(f'{Fore.GREEN}yapf: Success{Fore.RESET}')
 
-    print(f'\n{Fore.MAGENTA}==========Check Code Styles with `pylint`=========={Fore.GREEN}')
+    print(f'{Fore.MAGENTA}==========Check Code Styles with `pylint`=========={Fore.GREEN}')
     context.run(f'pylint {PROJECT_PATH}', pty=True)
 
 
@@ -40,6 +44,32 @@ def check_types(context: Context) -> None:
 def test(context: Context) -> None:
     """Run tests."""
     context.run('pytest . --cov=. --cov-report=xml', pty=True)
+
+
+@task
+def format_code(context: Context) -> None:
+    """Format code."""
+    PROJECT_PATH = 'twitter_video_tools'
+    init_colorama()
+
+    print(f'{Fore.MAGENTA}==========Format code with `isort`=========={Fore.RESET}')
+    context.run(f'isort {PROJECT_PATH}', pty=True)
+
+    print(f'\n{Fore.MAGENTA}==========Format code with `yapf`=========={Fore.RESET}')
+    context.run(f'yapf --in-place --recursive --parallel {PROJECT_PATH}', pty=True)
+
+
+@task
+def generate_type_hints(context: Context) -> None:
+
+    def _monkeytype_run() -> None:
+        init_colorama()
+        context.run('monkeytype --disable-type-rewriting run -m pytest')
+
+    _monkeytype_run()
+    context.run('monkeytype list-modules | xargs -n1 -I{} sh -c \'monkeytype apply {}\'')
+
+    format_code(context)
 
 
 @task
