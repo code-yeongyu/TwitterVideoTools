@@ -61,7 +61,8 @@ youtube_dl = "^2021.12.17"
 bs4 = "^0.0.1"
 requests = "^2.28.1"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
+monkeytype = "^22.2.0"
 mypy = "^0.982"
 yapf = "^0.32.0"
 pylint = "^2.15.5"
