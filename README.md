@@ -34,6 +34,7 @@ poetry add twitter-video-tools
 - Local
   - vscode ready (launching, debugging, formatting)
   - strict type checking using [mypy](https://github.com/python/mypy) & [pyright](https://github.com/microsoft/pyright)
+    - type hint generator [monkeytype](https://github.com/Instagram/MonkeyType) also included
   - amazing linters & formatters ([`yapf`](https://github.com/google/yapf), [`pylint`](https://github.com/PyCQA/pylint), [`isort`](https://github.com/PyCQA/isort))
     - `unify` for forcing single-quote
   - unit test using [`pytest`](https://github.com/myint/unify)
