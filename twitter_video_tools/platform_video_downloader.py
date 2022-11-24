@@ -3,6 +3,8 @@ from typing import Optional
 from playwright.sync_api import sync_playwright
 from youtube_dl.utils import YoutubeDLError
 
+from twitter_video_tools.monsnode_parser import MonsnodeParser
+
 from .monsnode_parser import MonsnodeParser
 from .twitter_crawler import TwitterCrawler
 from .utils.youtube_dl_wrapper import youtube_dl_wrapper
@@ -12,7 +14,7 @@ class PlatformVideoDownloader:
     monsnode_parser: MonsnodeParser
     video_output_path: str = 'videos'
 
-    def __init__(self, video_output_path: str = 'videos', monsnode_parser: MonsnodeParser = MonsnodeParser()):
+    def __init__(self, video_output_path: str = 'videos', monsnode_parser: MonsnodeParser = MonsnodeParser()) -> None:
         self.video_output_path = video_output_path
         self.monsnode_parser = monsnode_parser
 
