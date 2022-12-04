@@ -72,7 +72,7 @@ class TwitterCrawler:
         self._goto_liked_tweets(username)
         return self._get_article_links_in_current_screen()[0]
 
-    def get_video_of_tweet(self, link: str, timeout: Optional[float] = 5000) -> list[tuple[str, str]]:
+    def get_video_of_tweet(self, link: str, timeout: Optional[float] = 10000) -> list[tuple[str, str]]:
         video_links: list[str] = []
 
         def _request_m3u8_capture_handler(request: Request) -> None:
@@ -101,7 +101,7 @@ class TwitterCrawler:
         links: list[str] = []
 
         while True:
-            articles = self.page.locator('article')
+            articles = self.page.locator('article:has(video)')
             article_length = articles.count()
             try:
                 links = [
@@ -112,5 +112,6 @@ class TwitterCrawler:
                 break
             except Error:    # if articles in the page are not reachable
                 self.page.mouse.wheel(0, 500)    #  scrolling down to refresh the articles
+                self.page.mouse.wheel(0, -500)    #  scrolling down to refresh the articles
 
         return links
