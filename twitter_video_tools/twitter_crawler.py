@@ -101,7 +101,7 @@ class TwitterCrawler:
         links: list[str] = []
 
         while True:
-            articles = self.page.locator('article:has(video)')
+            articles = self.page.locator('article')
             article_length = articles.count()
             try:
                 links = [
