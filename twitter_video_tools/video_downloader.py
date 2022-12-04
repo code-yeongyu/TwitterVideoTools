@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Optional
+from typing import Optional, Union
 
 from twitter_video_tools.platform_video_downloader import \
     PlatformVideoDownloader
@@ -25,9 +25,14 @@ class VideoDownloader:
         self.password = password
         self.platform_video_downloader = platform_video_downloader
 
-    def download_videos(self, links: list[str]) -> None:
-        arguments = [(link, ) for link in links]
-        execute_parallel(self.download_video, arguments)
+    def download_videos(self, links: Union[str, list[str]]) -> None:
+        is_parallel_downloadable = isinstance(links, list) and len(links) > 1
+        if is_parallel_downloadable:
+            arguments = [(link, ) for link in links]
+            execute_parallel(self.download_video, arguments)
+            return
+        link = links if isinstance(links, str) else links[0]
+        self.download_video(link)
 
     def download_video(self, link: str) -> None:
         if 'monsnode.com' in link:
