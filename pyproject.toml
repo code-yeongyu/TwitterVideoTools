@@ -60,6 +60,7 @@ playwright = "^1.27.1"
 youtube_dl = "^2021.12.17"
 bs4 = "^0.0.1"
 requests = "^2.28.1"
+yt-dlp = "^2022.11.11"
 
 [tool.poetry.group.dev.dependencies]
 monkeytype = "^22.2.0"
