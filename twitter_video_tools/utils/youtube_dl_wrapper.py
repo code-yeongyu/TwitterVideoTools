@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Union
 
 import yt_dlp
 
@@ -13,7 +13,7 @@ class YoutubeDLWrapper:    # pylint: disable=too-few-public-methods
             youtube_dl_downloader: yt_dlp.YoutubeDL
             youtube_dl_downloader.download([link])
 
-    def download(self, links: list[str], youtube_dl_option: Optional[dict[str, str]] = None) -> None:
+    def download(self, links: list[str], youtube_dl_option: Optional[dict[str, Union[str, int]]] = None) -> None:
         arguments = [(link, youtube_dl_option) for link in links]
         execute_parallel(self._youtube_dl_download_video, arguments)
 
