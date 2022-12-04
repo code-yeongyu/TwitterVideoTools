@@ -1,4 +1,5 @@
-from typing import Optional
+from multiprocessing import cpu_count as get_cpu_count
+from typing import Optional, Union
 
 from playwright.sync_api import sync_playwright
 from yt_dlp.utils import YoutubeDLError
@@ -41,12 +42,16 @@ class PlatformVideoDownloader:
                 youtube_dl_option = self._make_youtube_dl_option(video_filename)
                 youtube_dl_wrapper.download([video_link], youtube_dl_option)
 
-    def _make_youtube_dl_option(self, video_filename: Optional[str] = None) -> dict[str, str]:
+    def _make_youtube_dl_option(self, video_filename: Optional[str] = None) -> dict[str, Union[str, int]]:
         youtube_dl_output_template = \
             f'{self.video_output_path}/{video_filename}' \
                 if video_filename else \
             f'{self.video_output_path}/%(title)s.%(ext)s'
-        return {'format': 'bestvideo/best', 'outtmpl': youtube_dl_output_template}
+        return {
+            'format': 'bestvideo/best',
+            'outtmpl': youtube_dl_output_template,
+            'concurrent_fragment_downloads': get_cpu_count(),
+        }
 
     def _get_twitter_private_videos_info(
         self,
