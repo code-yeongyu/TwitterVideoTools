@@ -1,7 +1,7 @@
 from typing import Optional
 
 from playwright.sync_api import sync_playwright
-from youtube_dl.utils import YoutubeDLError
+from yt_dlp.utils import YoutubeDLError
 
 from twitter_video_tools.monsnode_parser import MonsnodeParser
 
