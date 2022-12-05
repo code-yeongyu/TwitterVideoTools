@@ -32,7 +32,7 @@ python3 -m twitter_video_tools [link]
 Supported link types:
 
 - Video tweet: <https://twitter.com/twtvtOfficial/status/1599748329927499777>
-- Video from monsnode: <https://monsnode.com/v1506575871309589251>
+- Video from [monsnode](https://monsnode.com): <https://monsnode.com/v1506575871309589251>
 - Specific user's uploaded videos: <https://twitter.com/twtvtOfficial/media>
 - Specific user's liked videos: <https://twitter.com/twtvtOfficial/likes>
 
@@ -86,3 +86,34 @@ Done!
 poetry shell
 inv test
 ```
+
+## Inspirations
+
+### [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- Inspired me to start this project. yt-dlp is a fork project of youtube-dl.
+- Since the cookie option of yt-dlp's twitter extractor is not working, I decided to make my own project, using browser automation.
+
+### [playwright](https://playwright.dev/python/)
+
+- Microsoft's browser automation module.
+- Another major project to made me to start this project. I made up my mind to make TwitterVideoTools to experience playwright.
+- It would be so painful to imagine making this project with selenium, but I enjoyed a lot while writing the twitter crawler part thanks to playwright.
+
+### [typer](https://typer.tiangolo.com/)
+
+- Ever since I started this project, I always wanted to support CLI with typer's awesome development experience.
+- TwitterVideoTools' CLI is written with typer, and it is so beautiful and easy to use at the same time.
+
+### [pyright](https://github.com/microsoft/pyright) & [mypy](http://mypy-lang.org/) & [monkeytype](https://github.com/Instagram/MonkeyType)
+
+- These three tools helped me to write fully-typed python code.
+- I won't start my python project without these tools.
+
+### [my python project template](https://github.com/code-yeongyu/python3.9-project-template)
+
+- I made this template to make my python project development experience better.
+  - Safe & Convient development environment
+    - Strict type checking
+    - Amazing linters & formatters
+    - Unit test supported
+- This project is also based on this template.
