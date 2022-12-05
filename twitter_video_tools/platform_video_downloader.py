@@ -4,8 +4,6 @@ from typing import Optional, Union
 from playwright.sync_api import sync_playwright
 from yt_dlp.utils import YoutubeDLError
 
-from twitter_video_tools.monsnode_parser import MonsnodeParser
-
 from .monsnode_parser import MonsnodeParser
 from .twitter_crawler import TwitterCrawler
 from .utils.youtube_dl_wrapper import youtube_dl_wrapper
