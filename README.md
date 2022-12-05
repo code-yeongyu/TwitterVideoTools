@@ -15,10 +15,34 @@
 pip install twitter-video-tools
 ```
 
-### with Poetry (Recommended)
+### with Poetry
 
 ```sh
 poetry add twitter-video-tools
+```
+
+## Usage
+
+### Command line
+
+```sh
+python3 -m twitter_video_tools [link]
+```
+
+Supported link types:
+
+- Video tweet: <https://twitter.com/twtvtOfficial/status/1599748329927499777>
+- Video from monsnode: <https://monsnode.com/v1506575871309589251>
+- Specific user's uploaded videos: <https://twitter.com/twtvtOfficial/media>
+- Specific user's liked videos: <https://twitter.com/twtvtOfficial/likes>
+
+### Python Embedding
+
+```python
+from twitter_video_tools import TwitterVideoTools
+
+with TwitterVideoTools() as twitter_video_tools:
+    twitter_video_tools.download_from_user('twtvtOfficial')
 ```
 
 ## Contribution
