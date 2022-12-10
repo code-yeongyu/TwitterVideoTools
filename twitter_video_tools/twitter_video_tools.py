@@ -32,7 +32,7 @@ class TwitterVideoTools:
         platform_video_downloader = PlatformVideoDownloader(video_output_path)
         self.video_downloader = VideoDownloader(username, password, platform_video_downloader)
 
-        self._browser = sync_playwright().start().webkit.launch(headless=True)
+        self._browser = sync_playwright().start().webkit.launch(headless=debug)
         page = self._browser.new_page()
         self.twitter_crawler = TwitterCrawler(page)
         if self.username and self.password:
