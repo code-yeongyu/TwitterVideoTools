@@ -9,21 +9,23 @@ from .twitter_video_tools import TwitterVideoTools as TwitterVideoTools
 from .utils import URLValidator
 
 
-def _cli_main(
-    link: str = typer.Argument(..., help='Video tweet link or target user\'s likes or media.'),
-    username: Optional[str] = typer.Option(None, help='Your twitter credentials username.'),
-    password: Optional[str] = typer.Option(None, help='Your twitter credentials password.'),
-    until_link: Optional[str] = typer.Option(
-        None,
-        help='Keeps finding videos until this link is found. None for no limit. Only for user\'s likes or media.',
-    ),
+def _cli_main(    # pylint: disable=too-many-arguments
+        link: str = typer.Argument(..., help='Video tweet link or target user\'s likes or media.'),
+        username: Optional[str] = typer.Option(None, help='Your twitter credentials username.'),
+        password: Optional[str] = typer.Option(None, help='Your twitter credentials password.'),
+        until_link: Optional[str] = typer.Option(
+            None,
+            help='Keeps finding videos until this link is found. None for no limit. Only for user\'s likes or media.',
+        ),
+        output: str = typer.Option('videos', help='Output path for downloaded videos.'),
+        debug: bool = typer.Option(False, help='Enable debug mode. This disables headless mode of Browser.'),
 ) -> None:
     url_validator = URLValidator(link)
 
     if not url_validator.is_valid_link():
         rich_print(f'\'[underline]{link}[/underline]\' [bold red]is an invalid link.[/bold red]')
         return
-    twitter_video_tools = TwitterVideoTools(username, password)
+    twitter_video_tools = TwitterVideoTools(username, password, output, debug)
 
     if url_validator.is_valid_twitter_media_link():
         target_username = link.split('/')[3]
