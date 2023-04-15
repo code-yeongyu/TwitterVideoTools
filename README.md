@@ -1,4 +1,7 @@
+**This project is deprecated. Please look at <https://github.com/code-yeongyu/twitter_video_tools_v2>** 
+
 # Twitter Video Tools
+
 
 [![PyPI version](https://badge.fury.io/py/twitter-video-tools.svg)](https://badge.fury.io/py/twitter-video-tools)
 [![Test](https://github.com/code-yeongyu/twitter_video_tools/actions/workflows/test.yaml/badge.svg?branch=master)](https://github.com/code-yeongyu/twitter_video_tools/actions/workflows/test.yaml)
